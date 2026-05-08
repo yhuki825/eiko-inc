@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="株式会社永光は、愛媛県新居浜市を拠点に、太陽光発電所の運営・メンテナンス・コンサルティングを提供しています。">
+  <title>株式会社永光 | 太陽光発電の運営・メンテナンス・コンサルティング</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-ink: #102033;
+      --color-muted: #617085;
+      --color-line: #e5edf4;
+      --color-paper: #ffffff;
+      --color-bg: #f6f9fb;
+      --color-sun: #f59e0b;
+      --color-sun-deep: #ea580c;
+      --color-blue: #0f7490;
+      --color-green: #15976b;
+      --shadow-soft: 0 24px 70px rgba(16, 32, 51, 0.12);
+      --shadow-card: 0 18px 45px rgba(16, 32, 51, 0.09);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --max-width: 1160px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--color-ink);
+      background: var(--color-bg);
+      font-family: "Noto Sans JP", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.8;
+      letter-spacing: 0.02em;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max-width));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 50;
+      border-bottom: 1px solid rgba(229, 237, 244, 0.82);
+      background: rgba(255, 255, 255, 0.86);
+      backdrop-filter: blur(18px);
+    }
+
+    .header-inner {
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 13px;
+      min-width: max-content;
+    }
+
+    .brand-mark {
+      position: relative;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #fbbf24 0%, #f97316 55%, #fb923c 100%);
+      box-shadow: 0 14px 30px rgba(249, 115, 22, 0.30);
+      overflow: hidden;
+    }
+
+    .brand-mark::before,
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .brand-mark::before {
+      width: 13px;
+      height: 13px;
+      top: 9px;
+      left: 9px;
+    }
+
+    .brand-mark::after {
+      width: 34px;
+      height: 34px;
+      right: -14px;
+      bottom: -14px;
+      opacity: 0.32;
+    }
+
+    .brand-name {
+      display: block;
+      font-weight: 800;
+      font-size: 1.18rem;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-sub {
+      display: block;
+      margin-top: 3px;
+      color: var(--color-muted);
+      font-family: "Outfit", sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      color: #435268;
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .nav-links a {
+      position: relative;
+      transition: color 0.25s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -10px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--color-sun-deep);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--color-sun-deep);
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .menu-button {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--color-line);
+      border-radius: 14px;
+      background: #fff;
+      color: var(--color-ink);
+      cursor: pointer;
+    }
+
+    .menu-button span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      margin: 4px auto;
+      border-radius: 999px;
+      background: currentColor;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: grid;
+      align-items: center;
+      padding: 148px 0 86px;
+      color: #fff;
+      overflow: hidden;
+      background:
+        linear-gradient(105deg, rgba(10, 24, 43, 0.88) 0%, rgba(10, 24, 43, 0.70) 42%, rgba(10, 24, 43, 0.30) 100%),
+        url("https://images.unsplash.com/photo-1509391366360-fe5bb65858eb?q=80&w=2200&auto=format&fit=crop") center / cover;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      right: -180px;
+      top: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(251, 191, 36, 0.46) 0%, rgba(249, 115, 22, 0.0) 68%);
+      filter: blur(2px);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 160px;
+      background: linear-gradient(180deg, rgba(246, 249, 251, 0) 0%, var(--color-bg) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 910px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 24px;
+      padding: 8px 15px;
+      border: 1px solid rgba(255, 255, 255, 0.26);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(12px);
+      color: rgba(255, 255, 255, 0.92);
+      font-family: "Outfit", sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #fbbf24;
+      box-shadow: 0 0 0 7px rgba(251, 191, 36, 0.18);
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(2.8rem, 8vw, 6.7rem);
+      line-height: 1.05;
+      letter-spacing: -0.06em;
+      font-weight: 800;
+    }
+
+    .hero h1 span {
+      color: #fbbf24;
+    }
+
+    .hero-lead {
+      width: min(100%, 690px);
+      margin: 30px 0 0;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: clamp(1rem, 2vw, 1.18rem);
+      font-weight: 500;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 44px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 58px;
+      padding: 0 30px;
+      border-radius: 999px;
+      font-weight: 800;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    .button-primary {
+      background: linear-gradient(135deg, #fbbf24, #f97316);
+      color: #fff;
+      box-shadow: 0 18px 36px rgba(249, 115, 22, 0.34);
+    }
+
+    .button-secondary {
+      border: 1px solid rgba(255, 255, 255, 0.34);
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      backdrop-filter: blur(12px);
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+    }
+
+    .hero-panel {
+      position: absolute;
+      z-index: 2;
+      right: max(28px, calc((100vw - var(--max-width)) / 2));
+      bottom: 58px;
+      width: min(370px, calc(100% - 56px));
+      padding: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.13);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.16);
+    }
+
+    .hero-panel-label {
+      margin: 0 0 10px;
+      color: rgba(255, 255, 255, 0.72);
+      font-family: "Outfit", sans-serif;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .hero-panel p:last-child {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.94);
+      font-weight: 700;
+      line-height: 1.7;
+    }
+
+    .section {
+      padding: 120px 0;
+    }
+
+    .section-heading {
+      max-width: 800px;
+      margin-bottom: 54px;
+    }
+
+    .section-heading.center {
+      margin-inline: auto;
+      text-align: center;
+    }
+
+    .label {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--color-sun-deep);
+      font-family: "Outfit", sans-serif;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      line-height: 1.22;
+      letter-spacing: -0.045em;
+      font-weight: 800;
+    }
+
+    .section-text {
+      margin: 18px 0 0;
+      color: var(--color-muted);
+      font-size: 1.04rem;
+    }
+
+    .about {
+      background: var(--color-bg);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      align-items: center;
+      gap: 70px;
+    }
+
+    .image-stack {
+      position: relative;
+    }
+
+    .image-stack::before {
+      content: "";
+      position: absolute;
+      inset: -22px 26px 26px -22px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.34), rgba(21, 151, 107, 0.18));
+    }
+
+    .image-stack img {
+      position: relative;
+      width: 100%;
+      height: 560px;
+      object-fit: cover;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .floating-note {
+      position: absolute;
+      right: -22px;
+      bottom: 34px;
+      width: min(270px, 82%);
+      padding: 22px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: var(--shadow-card);
+      backdrop-filter: blur(16px);
+    }
+
+    .floating-note strong {
+      display: block;
+      color: var(--color-sun-deep);
+      font-family: "Outfit", sans-serif;
+      font-size: 1.65rem;
+      line-height: 1;
+    }
+
+    .floating-note span {
+      display: block;
+      margin-top: 8px;
+      color: var(--color-muted);
+      font-size: 0.9rem;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .about-copy p {
+      margin: 0;
+      color: var(--color-muted);
+      font-size: 1.02rem;
+    }
+
+    .about-copy p + p {
+      margin-top: 20px;
+    }
+
+    .statement {
+      margin-top: 34px;
+      padding: 24px 26px;
+      border-left: 4px solid var(--color-sun);
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 12px 35px rgba(16, 32, 51, 0.06);
+      color: var(--color-ink) !important;
+      font-weight: 800;
+    }
+
+    .services {
+      background: #fff;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .service-card {
+      position: relative;
+      min-height: 100%;
+      padding: 30px;
+      border: 1px solid var(--color-line);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, #fff 0%, #fbfdff 100%);
+      box-shadow: 0 10px 30px rgba(16, 32, 51, 0.05);
+      overflow: hidden;
+      transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+    }
+
+    .service-card::after {
+      content: "";
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      right: -70px;
+      top: -70px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(245, 158, 11, 0.32);
+      box-shadow: var(--shadow-card);
+    }
+
+    .service-icon {
+      position: relative;
+      z-index: 1;
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 24px;
+      border-radius: 18px;
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .service-icon svg {
+      width: 30px;
+      height: 30px;
+    }
+
+    .service-card h3 {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 12px;
+      font-size: 1.45rem;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+    }
+
+    .service-card p {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 24px;
+      color: var(--color-muted);
+      font-size: 0.96rem;
+    }
+
+    .service-card img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      border-radius: 18px;
+    }
+
+    .feature-band {
+      padding: 72px 0;
+      color: #fff;
+      background:
+        linear-gradient(100deg, rgba(15, 32, 51, 0.94), rgba(15, 116, 144, 0.84)),
+        url("https://images.unsplash.com/photo-1497440001374-f26997328c1b?q=80&w=2200&auto=format&fit=crop") center / cover;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 4fr repeat(3, 1fr);
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .feature-intro {
+      padding-right: 30px;
+    }
+
+    .feature-intro h2 {
+      margin: 0;
+      font-size: clamp(1.8rem, 4vw, 3.2rem);
+      line-height: 1.25;
+      letter-spacing: -0.04em;
+    }
+
+    .feature-intro p {
+      margin: 18px 0 0;
+      color: rgba(255, 255, 255, 0.76);
+    }
+
+    .feature-item {
+      padding: 26px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.10);
+      backdrop-filter: blur(12px);
+    }
+
+    .feature-item strong {
+      display: block;
+      margin-bottom: 10px;
+      color: #fbbf24;
+      font-family: "Outfit", sans-serif;
+      font-size: 2.25rem;
+      line-height: 1;
+    }
+
+    .feature-item span {
+      color: rgba(255, 255, 255, 0.86);
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .profile {
+      background: var(--color-bg);
+    }
+
+    .profile-card {
+      max-width: 920px;
+      margin-inline: auto;
+      border: 1px solid var(--color-line);
+      border-radius: var(--radius-xl);
+      background: #fff;
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    .profile-row {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 28px;
+      padding: 28px 34px;
+      border-bottom: 1px solid var(--color-line);
+    }
+
+    .profile-row:last-child {
+      border-bottom: 0;
+    }
+
+    .profile-term {
+      color: var(--color-muted);
+      font-weight: 800;
+    }
+
+    .profile-desc {
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .profile-desc ul {
+      margin: 0;
+      padding-left: 1.2em;
+    }
+
+    .profile-note {
+      max-width: 760px;
+      margin: 30px auto 0;
+      color: var(--color-muted);
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    .site-footer {
+      padding: 64px 0 34px;
+      color: #fff;
+      background: #0d1826;
+    }
+
+    .footer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      padding-bottom: 38px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 28px;
+      color: rgba(255, 255, 255, 0.64);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .footer-nav a:hover {
+      color: #fff;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 24px;
+      color: rgba(255, 255, 255, 0.48);
+      font-size: 0.86rem;
+    }
+
+    @media (max-width: 980px) {
+      .nav-links {
+        position: absolute;
+        top: 78px;
+        left: 20px;
+        right: 20px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 14px;
+        border: 1px solid var(--color-line);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: var(--shadow-card);
+      }
+
+      .nav-links.is-open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 14px 12px;
+      }
+
+      .nav-links a::after {
+        display: none;
+      }
+
+      .menu-button {
+        display: inline-block;
+      }
+
+      .hero-panel {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        margin: 44px auto 0;
+      }
+
+      .about-grid,
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-grid {
+        gap: 44px;
+      }
+
+      .service-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-intro {
+        padding-right: 0;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        width: min(calc(100% - 28px), var(--max-width));
+      }
+
+      .header-inner {
+        height: 70px;
+      }
+
+      .nav-links {
+        top: 70px;
+        left: 14px;
+        right: 14px;
+      }
+
+      .hero {
+        padding: 126px 0 70px;
+      }
+
+      .hero h1 {
+        letter-spacing: -0.05em;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .section {
+        padding: 82px 0;
+      }
+
+      .image-stack::before {
+        inset: -14px 14px 18px -14px;
+      }
+
+      .image-stack img {
+        height: 390px;
+      }
+
+      .floating-note {
+        right: 16px;
+        bottom: 16px;
+      }
+
+      .service-card {
+        padding: 24px;
+      }
+
+      .profile-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+        padding: 24px;
+      }
+
+      .footer-top,
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-nav {
+        flex-wrap: wrap;
+        gap: 16px 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="株式会社永光 ホームへ">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>
+          <span class="brand-name">株式会社永光</span>
+          <span class="brand-sub">EIKO CO., LTD.</span>
+        </span>
+      </a>
+
+      <nav class="nav-links" id="globalNav" aria-label="主要ナビゲーション">
+        <a href="#about">私たちについて</a>
+        <a href="#services">事業内容</a>
+        <a href="#profile">会社概要</a>
+      </nav>
+
+      <button class="menu-button" type="button" aria-label="メニューを開閉" aria-controls="globalNav" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-label="メインビジュアル">
+      <div class="container">
+        <div class="hero-content">
+          <p class="eyebrow">Sustainable Energy Solution</p>
+          <h1>太陽の光で、<br><span>豊かな未来</span>を照らす</h1>
+          <p class="hero-lead">株式会社永光は、愛媛県新居浜市を拠点に、太陽光発電の安定運営、高品質なメンテナンス、事業価値を高めるコンサルティングを提供します。</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#services">事業内容を見る</a>
+            <a class="button button-secondary" href="#profile">会社概要を見る</a>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-panel" aria-label="企業メッセージ">
+        <p class="hero-panel-label">From Ehime to Japan</p>
+        <p>発電所の長期的な収益性と安全性を支え、クリーンエネルギーの普及に貢献します</p>
+      </aside>
+    </section>
+
+    <section class="section about" id="about">
+      <div class="container about-grid">
+        <div class="image-stack">
+          <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=1800&auto=format&fit=crop" alt="青空の下に広がる太陽光発電パネル">
+          <div class="floating-note">
+            <strong>Clean</strong>
+            <span>地域と未来に寄り添う再生可能エネルギー事業</span>
+          </div>
+        </div>
+
+        <div class="about-copy">
+          <div class="section-heading">
+            <span class="label">About Our Vision</span>
+            <h2 class="section-title">エネルギーの価値を最大化する、技術と信頼</h2>
+          </div>
+          <p>地球温暖化対策として、再生可能エネルギーの重要性はかつてないほど高まっています。その中核を担う太陽光発電において、私たちは「単なる発電」を超えた価値を追求しています。</p>
+          <p>運営から保守、そして戦略的なコンサルティングまで。株式会社永光は、お客様の大切な資産である発電所が、20年、30年と安定して利益を生み出し続けるためのパートナーです。</p>
+          <p class="statement">愛媛から全国へ。私たちはクリーンエネルギー社会の旗手として、誠実に歩み続けます。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section services" id="services">
+      <div class="container">
+        <div class="section-heading center">
+          <span class="label">Expertise</span>
+          <h2 class="section-title">事業内容</h2>
+          <p class="section-text">太陽光発電ビジネスのあらゆるフェーズにおいて、専門的な知見と確かな技術でサポートを提供します。</p>
+        </div>
+
+        <div class="service-grid">
+          <article class="service-card" style="--accent: var(--color-sun-deep); --accent-soft: rgba(249, 115, 22, 0.11);">
+            <div class="service-icon" aria-hidden="true">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <h3>発電所運営</h3>
+            <p>自社発電所の運営ノウハウを活かし、効率的なエネルギー生産を管理。売電収入の安定化と、環境負荷の低減を両立させた運営体制を構築します。</p>
+            <img src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?q=80&w=1400&auto=format&fit=crop" alt="太陽光発電所の運営イメージ">
+          </article>
+
+          <article class="service-card" style="--accent: var(--color-blue); --accent-soft: rgba(15, 116, 144, 0.11);">
+            <div class="service-icon" aria-hidden="true">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+              </svg>
+            </div>
+            <h3>メンテナンス</h3>
+            <p>定期的な点検、清掃、不具合の早期発見に対応。O&amp;Mの視点から発電ロスを最小限に抑え、設備の長寿命化と安定稼働を実現します。</p>
+            <img src="https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?q=80&w=1400&auto=format&fit=crop" alt="太陽光設備メンテナンスのイメージ">
+          </article>
+
+          <article class="service-card" style="--accent: var(--color-green); --accent-soft: rgba(21, 151, 107, 0.11);">
+            <div class="service-icon" aria-hidden="true">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+              </svg>
+            </div>
+            <h3>コンサルタント事業</h3>
+            <p>新規導入の計画から既存発電所の収益改善提案まで、法規制への対応や市場動向を踏まえた最適な事業戦略を提案します。<br>　</p>
+            <img src="campaign-creators-gMsnXqILjp4-unsplash.jpg" alt="コンサルティングの打ち合わせイメージ">
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-band" aria-label="永光の強み">
+      <div class="container feature-grid">
+        <div class="feature-intro">
+          <span class="label">Our Strength</span>
+          <h2>発電所の未来を見据えた、総合的なサポート。</h2>
+          <p>現場を知る運営力と、継続的な保守品質、事業判断を支える提案力で、<br>太陽光発電の価値を守ります。</p>
+        </div>
+        <div class="feature-item">
+          <strong>01</strong>
+          <span>安定稼働を重視した発電所運営</span>
+        </div>
+        <div class="feature-item">
+          <strong>02</strong>
+          <span>発電ロスを抑える継続的メンテナンス</span>
+        </div>
+        <div class="feature-item">
+          <strong>03</strong>
+          <span>収益性を高める実践的コンサルティング</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section profile" id="profile">
+      <div class="container">
+        <div class="section-heading center">
+          <span class="label">Corporate Profile</span>
+          <h2 class="section-title">会社概要</h2>
+        </div>
+
+        <div class="profile-card">
+          <div class="profile-row">
+            <div class="profile-term">会社名</div>
+            <p class="profile-desc">株式会社永光</p>
+          </div>
+          <div class="profile-row">
+            <div class="profile-term">代表者</div>
+            <p class="profile-desc">永易 尚</p>
+          </div>
+          <div class="profile-row">
+            <div class="profile-term">所在地</div>
+            <p class="profile-desc">〒738-0034<br>愛媛県新居浜市田ノ上2-7-27</p>
+          </div>
+          <div class="profile-row">
+            <div class="profile-term">事業内容</div>
+            <div class="profile-desc">
+              <ul>
+                <li>太陽光発電所運営</li>
+                <li>太陽光発電メンテナンス</li>
+                <li>太陽光発電コンサルタント事業</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <p class="profile-note">愛媛県新居浜市を拠点に、地域社会と持続可能なエネルギーの未来を支えています。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <a class="brand" href="#top" aria-label="株式会社永光 ホームへ戻る">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>
+            <span class="brand-name">株式会社永光</span>
+            <span class="brand-sub">EIKO CO., LTD.</span>
+          </span>
+        </a>
+        <nav class="footer-nav" aria-label="フッターナビゲーション">
+          <a href="#about">私たちについて</a>
+          <a href="#services">事業内容</a>
+          <a href="#profile">会社概要</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 EIKO Co., Ltd. All Rights Reserved.</p>
+        <p>Niihama, Ehime, Japan</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuButton = document.querySelector('.menu-button');
+    const globalNav = document.querySelector('#globalNav');
+
+    menuButton.addEventListener('click', () => {
+      const isOpen = globalNav.classList.toggle('is-open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    globalNav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        globalNav.classList.remove('is-open');
+        menuButton.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
+</body>
+</html>
